@@ -1,0 +1,2 @@
+# coronagame
+Coronavirus relates games
