@@ -1,2 +1,2 @@
 # coronagame
-Coronavirus relates games
+idea de juego en pico8: el coronagame. El personaje principal tiene que salir a comprar cosas al super, pero tiene que estar a mas de 2 metros de todo el mundo, por los que tiene que irse por distintos pasillos para conseguir pasta, arroz, huevos, verduras. Cuando pasa a menos de 2 mts de una persona pierde barra de salud, también con el paso del tiempo tb le va bajando la salud. Cuando llega a cero, se corona y pierde
