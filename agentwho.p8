@@ -2,6 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 18
 __lua__
 function _init()
+ --agente jugador
  agent={x=64,
         y=64,
         sprt=16}
@@ -16,9 +17,9 @@ end
 
 
 function _draw()
- cls(2)
- gen_map()
-	draw_agent()
+ cls(4)
+ gen_map() --genera el mapa
+	draw_agent() --dibuja el agente
 end
 
 function draw_agent()
@@ -40,7 +41,8 @@ function move_agent()
 end
 
 function gen_map()
- for room=4,4 do
+ --mapa de 9x9
+ for room=1,9 do
   draw_room(room)
  end
 end
@@ -51,13 +53,7 @@ function draw_room(room)
  r_x=flr(room/3)+1
  r_y=flr(room%3)+1
  
- rect()
- 
- 
- print(entero.." "..modulo,65,65)
- 
- 
- print(room*entero,room*modulo*ancho+5,5)
+ rect(5+ancho*r_x,5+ancho*r_y,5+ancho*(r_x+1),5+ancho*(r_y+1),2) 
 end
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
