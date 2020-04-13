@@ -5,19 +5,21 @@ function _init()
  --agente jugador
  agent={x=64,
         y=64,
-        sprt=16}
+        sprt=16,
+        risk=0}
  
  -- lista con toda la gente       
  people={}
        
  dx=1
  dy=1
- create_people()
+ create_people(30)
 end
 
 
 function _update() 
  move_people()
+ check_collision()
  move_agent()
 end
 
@@ -31,10 +33,16 @@ end
 
 function draw_agent()
 	spr(agent.sprt,agent.x,agent.y)
+	if agent.risk>0 then
+	 circ(agent.x+3,agent.y+3,10,8)
+	else
+	 circ(agent.x+3,agent.y+3,10,12)
+	end
+	agent.risk=0
 end
 
-function create_people()
- for p=1,10 do
+function create_people(cant)
+ for p=1,cant do
   person={id=p,
   								x=rnd(120)+4,
   								y=rnd(120)+4,
@@ -58,9 +66,27 @@ function draw_people()
 end
 
 function check_collision()
--- for p in all(people) do
-  
--- end
+ for p in all(people) do
+  if (abs(agent.x-p.x)+abs(agent.y-p.y))<16 then
+   agent.risk+=1
+   on_collision(agent,p)
+  end
+  for p2 in all(people) do
+   if p.id!=p2.id then
+    if (abs(p.x-p2.x)+abs(p.y-p2.y))<4 then
+     on_collision(p,p2)
+    end
+   end
+  end
+ end
+end
+
+function on_collision(p1,p2)
+ --cambiar direccion del p2
+ if (rnd(1)>0.5) p2.dx*=-1 p2.dy*=-1
+ if (p1.sick) then 
+ 	p2.sick=true
+ end
 end
 
 function move_agent()
